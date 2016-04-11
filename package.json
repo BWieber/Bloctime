@@ -1,17 +1,17 @@
 {
-  "name": "bloc-frontend-project-starter",
-  "version": "0.0.2",
-  "description": "Starter project for the Bloc Frontend Web Development",
+  "name": "Bloctime",
+  "version": "0.0.1",
+  "description": "Pomodoro Technique Front End Project",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bloc/bloc-frontend-project-starter"
+    "url": ""
   },
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
-  "author": "Bloc Inc",
-  "license": "ISC",
+  "author": "Brandon Wieber",
+  "license": "",
   "dependencies": {
     "hapi": "~7.5.0",
     "path": "^0.4.9"
