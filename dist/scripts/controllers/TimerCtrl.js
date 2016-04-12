@@ -1,12 +1,11 @@
-(function() {
-     function TimerCtrl($firebaseArray, $interval) {
-         var ref = new Firebase("https://shining-heat-4055.firebaseio.com/")
-         
-         this.clock = "25:00";
-         
-     }
- 
-     angular
-         .module('blocTime')
-         .controller('TimerCtrl', TimerCtrl);
- })();
+var blocTime = angular.module("blocTime")
+
+.controller("TimerCtrl",['$scope','$interval', 
+            function($scope, $interval){
+                $scope.clock = "1500";
+                
+                $interval(function(){
+                    parseInt($scope.clock) =-60;
+                }, 1000)
+            }])
+
