@@ -45,6 +45,9 @@ html {
 .container {
     margin: 0 auto;
     max-width: 64rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .container.narrow {
