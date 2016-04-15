@@ -1,8 +1,8 @@
 <section class="container">
         <h1 class="text-center"> {{ landing.clock | timecode }} </h1>
-    
-        <button type="button" class='btn btn-info btn-lg' ng-click="landing.startTimer()">Start</button>
-
-        <button type="button" class='btn btn-warning btn-lg' ng-click="landing.stopTimer()">Stop</button>
+    <div class="text-center">
+        <button type="button" class='btn btn-info btn-lg' ng-show="!landing.timerRunning" ng-click="landing.startTimer()"> {{ landing.buttonMsg }}</button>
+        <button type="button" class='btn btn-warning btn-lg' ng-show="landing.timerRunning" ng-click="landing.resetTimer()"> {{ landing.buttonMsg }}</button>
+    </div>
 
 <section>
