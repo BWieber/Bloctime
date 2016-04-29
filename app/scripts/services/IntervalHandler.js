@@ -1,30 +1,37 @@
  (function() {
      function IntervalHandler($interval) {
+          
+         var IntervalHandler = {};
          
-         var promise;
+         this.clock = 1500;
          
-         this.start = function() {
-             this.stop();
-             
-             promise = $interval(function () {
-                this.clock -= 1;
+         this.timer = null;
+         
+         this.buttonMsg = "Time to Pomodoro!";
+         
+         this.timerRunning = false;
+         
+         this.startTimer = function() {
+             this.timerRunning = true;
+             this.buttonMsg = "Reset Timer"
+             this.timer = $interval(function () {
+                 this.clock -= 1;
              }.bind(this), 1000);
          }
          
-         this.stop = function() {
-             $interval.cancel(promise);
+         this.resetTimer = function() {
+             if (angular.isDefined(this.timer)) {
+                    $interval.cancel(this.timer);
+                    this.clock = 1500;
+                    this.timerRunning = false;
+                    this.buttonMsg = 'Ready to Pomodoro again?'
+             }
          }
          
-         
-         this.start();
-         
-         this.$on('destroy', function() {
-             this.stop();
-         })
-         
+        
      }
- 
+  
      angular
          .module('blocTime')
-         .factory('IntervalHandler', ['$firebaseArray', '$interval', IntervalHandler]);
+         .factory('IntervalHandler', ['$interval', IntervalHandler]);
  })();
