@@ -4,7 +4,7 @@
          
          this.onBreak = false;
          
-         this.clock = 2;
+         this.clock = 1500;
          
          this.timer = null;
          
@@ -35,6 +35,21 @@
                     this.timerRunning = false;
                     this.buttonMsg = 'Ready to Pomodoro again?'
              }
+         }
+         
+         this.breakTimer = function() {
+             this.timerRunning = true;
+             this.onBreak = false;
+             this.buttonMsg = "Reset Timer";
+             this.timer = $interval(function () {
+                 this.clock -= 1;
+                 if(this.clock == 0) {
+                     $interval.cancel(this.timer);
+                     this.timerRunning = false;
+                     this.buttonMsg = "Nice Work - Ready for Another Session?"
+                     this.clock = 1500;
+                 }
+             }.bind(this), 1000);
          }
          
         }   
