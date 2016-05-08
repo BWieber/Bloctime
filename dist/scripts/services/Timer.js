@@ -1,16 +1,14 @@
  (function() {
-     function Timer($interval, TIMES, $rootScope) {
+     function Timer($interval, TIMES) {
          
          var Timer = {};
-         
-         var scope = $rootScope
-         
+                  
          var message = "This is a test.";
                
          Timer.timerRunning = false;
          Timer.breakMsg = "Start Break";
          Timer.onBreak = false;
-         Timer.buttonMsg = "Time to Pomodoro! (Timer)";
+         Timer.buttonMsg = "Time to Pomodoro!";
          Timer.completedSessions = 0;
          
          Timer.timer = null;
@@ -18,22 +16,22 @@
          
          Timer.start = function() {
              Timer.timerRunning = true;
-             Timer.buttonMsg = "Reset Timer (Timer)";
+             Timer.buttonMsg = "Reset Timer";
              Timer.onBreak = false;
              
              Timer.timer = $interval(function (){
                  Timer.clock--;
                  
-                 if(Timer.clock == 0 && Timer.completedSessions == 4) {
+                 if(Timer.clock == -1 && Timer.completedSessions == 4) {
                      $interval.cancel(Timer.timer);
                         Timer.timerRunning = false;
-                        Timer.breakMsg = "Great Work! - Enjoy your Break (Timer)"
+                        Timer.breakMsg = "Great Work! - Enjoy your Break"
                         Timer.onBreak = true;
                         Timer.clock = 10;
                         Timer.completedSessions = 0;
                  }
 
-                 else if(Timer.clock == 0) {
+                 else if(Timer.clock == -1) {
                      $interval.cancel(Timer.timer);
                          Timer.timerRunning = false;
                          Timer.breakMsg = "Start Break";
@@ -62,7 +60,7 @@
              Timer.buttonMsg = "Reset Timer";
              Timer.timer = $interval(function () {
                  Timer.clock -= 1;
-                 if(Timer.clock == 0) {
+                 if(Timer.clock == -1) {
                      $interval.cancel(Timer.timer);
                      Timer.timerRunning = false;
                      Timer.buttonMsg = "Nice Work - Ready for Another Session?"
@@ -70,14 +68,6 @@
                  }
              }.bind(this), 1000);
          }
-         
-         var mySound = new buzz.sound( "/sounds/ding.mp3", {
-            preload: true
-         });
-         
-         scope.$watch('', function() {
-             console.log("This is a watcher test.")
-         });
          
          
          return Timer;
@@ -87,5 +77,5 @@
   
      angular
          .module('blocTime')
-         .factory('Timer', ['$interval', 'TIMES', '$rootScope', Timer]);
+         .factory('Timer', ['$interval', 'TIMES', Timer]);
  })();
