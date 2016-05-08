@@ -1,5 +1,5 @@
  (function() {
-     function Timer($interval) {
+     function Timer($interval, TIMES) {
          
          var Timer = {};
          
@@ -12,7 +12,7 @@
          Timer.completedSessions = 0;
          
          Timer.timer = null;
-         Timer.clock = 5;
+         Timer.clock = 2;
          
          Timer.start = function() {
              Timer.timerRunning = true;
@@ -36,7 +36,7 @@
                          Timer.timerRunning = false;
                          Timer.breakMsg = "Start Break";
                          Timer.onBreak = true;
-                         Timer.clock = 5;
+                         Timer.clock = 3;
                          Timer.completedSessions ++;
                  }
                  
@@ -47,7 +47,7 @@
          Timer.reset = function() {
              if (angular.isDefined(Timer.timer)) {
                     $interval.cancel(Timer.timer);
-                    Timer.clock = 10;
+                    Timer.clock = 2;
                     Timer.timerRunning = false;
                     Timer.buttonMsg = 'Ready to Pomodoro again?'
              }
@@ -77,5 +77,5 @@
   
      angular
          .module('blocTime')
-         .factory('Timer', ['$interval', Timer]);
+         .factory('Timer', ['$interval', 'TIMES', Timer]);
  })();
