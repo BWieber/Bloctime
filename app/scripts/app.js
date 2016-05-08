@@ -16,5 +16,6 @@
      
      angular
         .module('blocTime', ['ui.router', 'firebase'])
+        .constant()
         .config(config);
  })();

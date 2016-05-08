@@ -1,19 +1,18 @@
  (function() {
-     function LandingCtrl($firebaseArray, $interval) {
+     function LandingCtrl($firebaseArray, $interval, Test, Timer) {
          var ref = new Firebase("https://shining-heat-4055.firebaseio.com/");
-         
-         this.onBreak = false;
          
          var completedSessions = 0;
          
-         this.clock = 2;
+         var mySound = new buzz.sound( "/sounds/ding.mp3", {
+            preload: true
+         });
          
-         this.timer = null;
          
-         this.buttonMsg = "Time to Pomodoro!";
+         this.timer = Timer;
          
-         this.breakMsg = "Start Break";
-         
+         this.test = Test;
+          
          this.timerRunning = false;
          
          this.startTimer = function() {
@@ -70,5 +69,5 @@
      
      angular
          .module('blocTime')
-         .controller('LandingCtrl', ['$firebaseArray', '$interval', LandingCtrl]);
+         .controller('LandingCtrl', ['$firebaseArray', '$interval', 'Test', 'Timer', LandingCtrl]);
  })();
