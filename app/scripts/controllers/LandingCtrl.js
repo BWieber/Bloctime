@@ -1,13 +1,9 @@
  (function() {
-     function LandingCtrl($firebaseArray, $interval, Timer) {
+     function LandingCtrl($firebaseArray, $interval, Timer, $scope) {
          var ref = new Firebase("https://shining-heat-4055.firebaseio.com/");
                   
-         var mySound = new buzz.sound( "/sounds/ding.mp3", {
-            preload: true
-         });
-         
          this.timer = Timer;
-         
+        
         }   
      
      angular

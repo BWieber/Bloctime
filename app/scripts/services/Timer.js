@@ -1,10 +1,12 @@
  (function() {
-     function Timer($interval, TIMES) {
+     function Timer($interval, TIMES, $rootScope) {
          
          var Timer = {};
          
+         var scope = $rootScope
+         
          var message = "This is a test.";
-          
+               
          Timer.timerRunning = false;
          Timer.breakMsg = "Start Break";
          Timer.onBreak = false;
@@ -69,6 +71,14 @@
              }.bind(this), 1000);
          }
          
+         var mySound = new buzz.sound( "/sounds/ding.mp3", {
+            preload: true
+         });
+         
+         scope.$watch('', function() {
+             console.log("This is a watcher test.")
+         });
+         
          
          return Timer;
          
@@ -77,5 +87,5 @@
   
      angular
          .module('blocTime')
-         .factory('Timer', ['$interval', 'TIMES', Timer]);
+         .factory('Timer', ['$interval', 'TIMES', '$rootScope', Timer]);
  })();
