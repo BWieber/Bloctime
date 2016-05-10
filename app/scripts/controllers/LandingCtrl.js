@@ -1,10 +1,12 @@
  (function() {
-     function LandingCtrl($scope, $firebaseArray, Timer) {
+     function LandingCtrl($scope, $firebaseArray, Timer, Tasks) {
          var ref = new Firebase("https://shining-heat-4055.firebaseio.com/");
                   
          this.timer = Timer;
                   
          $scope.timer = Timer;
+         
+         $scope.task = Tasks;
          
          var mySound = new buzz.sound( "/assets/sounds/ding.mp3", {
             preload: true
@@ -20,5 +22,5 @@
      
      angular
          .module('blocTime')
-         .controller('LandingCtrl', ['$scope', '$firebaseArray', 'Timer', LandingCtrl]);
+         .controller('LandingCtrl', ['$scope', '$firebaseArray', 'Timer', 'Tasks', LandingCtrl]);
  })();
