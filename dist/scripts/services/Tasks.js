@@ -2,11 +2,18 @@
   function Tasks($firebaseArray) {
       var ref = new Firebase("https://shining-heat-4055.firebaseio.com/");
       
-      var tasks = $firebaseArray(ref);
-
-      return {
-        all: tasks
-      };
+      var TasksHolder = {};
+      
+      TasksHolder.tasks = $firebaseArray(ref) 
+  
+      TasksHolder.addTask = function() {
+          TasksHolder.tasks.$add({
+              text: TasksHolder.newTaskText
+          });
+      }
+  
+      return TasksHolder;
+  
   }
   
   angular

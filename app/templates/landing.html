@@ -1,10 +1,43 @@
 <section class="container pull-left" style="background-color: #FF6347;">
     <h1 class="text-center"> Task History </h1>
-    <div class='text-center'>
-        <input ng-model='tasks' />
-         <br>
-        <button type="button" class='btn btn-info btn-lg' ng-click="saveTask()"> Add Task </button>
-    </div>
+    
+    <form ng-submit="addTask()">
+        <div class="form-group">
+            <label> Task Name: </label>
+            <input ng-model="newText" />
+        </div>
+        
+        <div class="form-group">
+            <button type="submit" class="btn btn-info">Save Task</button>  
+        </div>        
+    </form>
+    
+    <h1> Task List </h1>
+    
+    <h6 ng-repeat="t in tasks">
+        {{ t.text }}
+        
+    </h6>
+    
+    
+    
+    
+    
+    
+<!--
+    <form ng-submit="addTask()">
+        <div class='form-group'>
+            <label> Task Name: </label>
+            <input ng-model='newText' class='form-control' />
+        </div>
+        
+        
+        <div class='form-group'>
+            <button type="submit" class='btn btn-info'>Save</button>        
+        </div>
+        
+    </form>
+-->
     
 </section>
 

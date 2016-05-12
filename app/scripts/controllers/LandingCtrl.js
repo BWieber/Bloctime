@@ -1,13 +1,24 @@
  (function() {
-     function LandingCtrl($scope, $firebaseArray, Timer, Tasks) {
+     function LandingCtrl($scope, $firebaseArray, Timer) {
+         
          var ref = new Firebase("https://shining-heat-4055.firebaseio.com/");
-                  
+
+         $scope.tasks = $firebaseArray(ref); 
+
+         $scope.addTask = function() {
+              $scope.tasks.$add({
+                  text: $scope.newText
+              });
+             
+              if($scope.tasks.$add) {
+                 alert("Message Saved");
+             }
+          };
+         
          this.timer = Timer;
                   
          $scope.timer = Timer;
-         
-         $scope.task = Tasks;
-         
+                  
          var mySound = new buzz.sound( "/assets/sounds/ding.mp3", {
             preload: true
          });
@@ -22,5 +33,5 @@
      
      angular
          .module('blocTime')
-         .controller('LandingCtrl', ['$scope', '$firebaseArray', 'Timer', 'Tasks', LandingCtrl]);
+         .controller('LandingCtrl', ['$scope', '$firebaseArray', 'Timer', LandingCtrl]);
  })();
