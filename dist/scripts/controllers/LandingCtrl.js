@@ -11,7 +11,7 @@
               });
              
               if($scope.tasks.$add) {
-                 alert("Message Saved");
+                 console.log("Message Saved");
              }
           };
          

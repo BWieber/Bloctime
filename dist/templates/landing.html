@@ -1,38 +1,41 @@
-<section class="container pull-left" style="background-color: #FF6347;">
-    <h1 class="text-center"> Task History </h1>
+<section class="container pull-left" style="background-color: #FF6347; overflow:scroll;">
     
+    <br>
+    <br>
+    
+    <h1> Task History </h1>
+
     <form ng-submit="addTask()">
         <div class="form-group">
-            <label> Task Name: </label>
             <input ng-model="newText" />
         </div>
-        
+
         <div class="form-group">
-            <button type="submit" class="btn btn-info">Save Task</button>  
+            <button type="submit" class="btn btn-info">Add Task</button>  
         </div>        
     </form>
-    
+
     <h1> Task List </h1>
-    
-    <h6 ng-repeat="t in tasks">
+
+    <h6 ng-repeat="t in tasks | orderBy: '-text'">
         {{ t.text }}
-        
     </h6>
-    
+
 </section>
 
 
 <section class="container">
         <h1 class="text-center"> {{ landing.timer.clock | timecode }} </h1>
     <div class="text-center">
-        
+
         <button type="button" class='btn btn-info btn-lg' ng-show="!landing.timer.timerRunning && !landing.timer.onBreak"  ng-click="landing.timer.start()"> {{ landing.timer.buttonMsg }}</button>
-        
+
         <button type="button" class='btn btn-warning btn-lg' ng-show="landing.timer.timerRunning"  ng-click="landing.timer.reset()"> {{ landing.timer.buttonMsg }}</button>
-        
+
         <button type="button" class='btn btn-primary btn-lg' ng-show="landing.timer.onBreak && !landing.timer.timerRunning" ng-hide="!landing.timer.onBreak" ng-click="landing.timer.break()"> {{ landing.timer.breakMsg }}</button>
-        
-        
+
+
     </div>
 
 <section>
+
